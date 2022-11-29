@@ -1,0 +1,321 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Respond to questions</title>
+    <link rel="icon" type="image/x-icon" href="C:\Users\Alejandro\Documents\Proyecto\web_builders (1)\web_builders\assets\rumor.png" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="js/Winwheel.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/jQuery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<style>
+
+    .container{
+        background: rgba(0,0,0,0.5);
+        width: 100%;
+        height: 624px;
+    }
+
+    .header{
+        width: 100%;
+        height: 70px;
+        background-color: #0dcaf0;
+    }
+
+    .title{
+        font-family: Candara;
+        font-style:italic;
+        font-size: 20px;
+        text-align: center;
+    }
+
+
+
+</style>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <br><br><br>
+            <center><h1 STYLE="font-size: 30px;color:#ffffff">Exercise One</h1> <br>
+                <hr style="border: 2px solid #ffffff;margin-top: -25px;margin-left: 50px;width: 550px">
+                <p STYLE="font-size: 15px;color:#ffffff">In this part of the test, you will have to spin the wheel, then you need to click on the
+                     timer you have, and remember that you have only 15 seconds to respond each question. If
+                      you have any question regarding a good possible answer, click on "Help".</p>
+                <br><br><br><br><br>
+                <input type="button" value="Spin" onclick="miRuleta.startAnimation();" class="btn btn-success btn-lg"
+                       style="width: 200px;margin-left: 0px;border: 2px solid #ffffff">
+
+            </center>
+            <br><br><br>
+        </div>
+        <div class="col-md-6">
+            <canvas id="canvas" height="600px" width="600px">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var miRuleta = new Winwheel({
+
+        'numSegments' : 5, //numero de piezas en la ruleta
+        'outerRadius' : 270, //tamaño de la circunferencia
+        'segments':[
+            {'fillStyle': '#f1c40f', 'text': 'Question 1'}, //nombre que aparece
+            {'fillStyle': '#2ecc71', 'text': 'Question 2'},
+            {'fillStyle': '#e67e22', 'text': 'Question 3'},
+            {'fillStyle': '#e74c3c', 'text': 'Question 4'},
+            {'fillStyle': '#8e44ad', 'text': 'Question 5'},
+
+        ],
+        'animation':{
+            'type':'spinToStop',
+            'duration': 4, //tiempo de duracion al girar
+            'callbackFinished':'Mensaje()',
+            'callbackAfter':'dibujarIndicador()'
+        }
+    });
+
+    dibujarIndicador();
+    function Mensaje() {
+        var SegmentoSeleccionado = miRuleta.getIndicatedSegment();
+        alert("You have 15 seconds to answer " + SegmentoSeleccionado.text);
+        if(SegmentoSeleccionado.text == "Question 1"){
+            $('#myModal1').modal({backdrop:'static'});
+        }
+        if(SegmentoSeleccionado.text == "Question 2"){
+            $('#myModal2').modal({backdrop:'static'});
+        }
+        if(SegmentoSeleccionado.text == "Question 3"){
+            $('#myModal3').modal({backdrop:'static'});
+        }
+        if(SegmentoSeleccionado.text == "Question 4"){
+            $('#myModal4').modal({backdrop:'static'});
+        }
+        if(SegmentoSeleccionado.text == "Question 5"){
+            $('#myModal5').modal({backdrop:'static'});
+        }
+
+        miRuleta.stopAnimation(false);
+        miRuleta.rotationAngle = 0;
+        miRuleta.draw();
+        dibujarIndicador();
+    }
+    function dibujarIndicador() {
+        var ctx = miRuleta.ctx;
+        ctx.strokeStyle = 'navy';
+        ctx.fillStyle = 'black';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(300,0);
+        ctx.lineTo(320,0);
+        ctx.lineTo(300,40);
+        ctx.lineTo(280,0);
+        ctx.stroke();
+        ctx.fill();
+    }
+
+
+
+</script>
+
+
+<!-- -->
+<!-- aqui introduccir la pregunta 1-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  style="width: 90%;margin: auto">
+    <div class="modal-dialog" role="document" style="width: 90%;margin: auto">
+        <div class="modal-content" style="width: 90%;margin: auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center>
+                    <h2 class="modal-title" id="myModalLabel" style="color:#000">
+                        Question 1</h2>
+            </div>
+            <div class="modal-body">
+                <br>
+                <center><h2>How often do you watch television?</h2></center>
+                <center><iframe width="260" height="115" src="https://www.youtube.com/embed/yXkIHyBfns8" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
+                <details>
+                    <summary style="text-align:center;">Help</summary>
+                    <p style="text-align:center;">I often watch television on Sunday because it is the only day I have free time. So, I enjoy a lot that time.</p>
+                </details>
+            </div>
+            </center>
+            <hr>
+            <div class="row">
+
+            </div>
+        </div>
+        <br>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Exit</button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Large modal -->
+<!-- aqui introduccir la pregunta 2-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  style="width: 90%;margin: auto">
+    <div class="modal-dialog" role="document" style="width: 90%;margin: auto">
+        <div class="modal-content" style="width: 90%;margin: auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center>
+                    <h2 class="modal-title" id="myModalLabel" style="color:#000">Question 2</h2>
+            </div>
+            <div class="modal-body">
+                <br>
+                <center> <h2>What kinds of programs do you usually watch on television?</h2></center>
+                <center><iframe width="260" height="115" src="https://www.youtube.com/embed/yXkIHyBfns8" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
+                <details>
+                    <summary style="text-align:center;">Help</summary>
+                    <p style="text-align:center;">The kinds of programs I usually watch on television are cartoons, series and movies. Actually, there are my favorites.</p>
+                </details>
+            </div>
+            </center>
+            <hr>
+            <div class="row">
+
+            </div>
+            <br>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Exit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+
+<!-- aqui introduccir la pregunta 3-->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  style="width: 90%;margin: auto">
+    <div class="modal-dialog" role="document" style="width: 90%;margin: auto">
+        <div class="modal-content" style="width: 90%;margin: auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center>
+                    <h2 class="modal-title" id="myModalLabel" style="color:#000">Question 3</h2>
+            </div>
+            <div class="modal-body">
+                <br>
+                <center> <h2>Describe your favorite television program.</h2></center>
+                <center><iframe width="260" height="115" src="https://www.youtube.com/embed/yXkIHyBfns8" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
+                <details>
+                    <summary style="text-align:center;">Help</summary>
+                    <p style="text-align:center;">My favorite television program is Cartoon Network because I can enjoy watching Teen Titans Go! I usually watch at 8:00 am every day.</p>
+                </details>
+            </div>
+            </center>
+            <hr>
+            <div class="row">
+
+            </div>
+            <br>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Exit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+
+<!-- aqui introduccir la pregunta 4-->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  style="width: 90%;margin: auto">
+    <div class="modal-dialog" role="document" style="width: 90%;margin: auto">
+        <div class="modal-content" style="width: 90%;margin: auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center>
+                    <h2 class="modal-title" id="myModalLabel" style="color:#000">Question 4</h2>
+            </div>
+            <div class="modal-body">
+                <br>
+                <center><h2>How many grocery stores are in your neighborhood, and can you walk to them? </h2></center>
+                <center><iframe width="260" height="115" src="https://www.youtube.com/embed/yXkIHyBfns8" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
+                <details>
+                    <summary style="text-align:center;">Help</summary>
+                    <p style="text-align:center;">There are too many grocery stores in my neighborhood. It is called Super Selectos. I can walk because it is near from my house.</p>
+                </details>
+            </div>
+            </center>
+            <hr>
+            <div class="row">
+
+            </div>
+            <br>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Exit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+
+<!-- aqui introduccir la pregunta 5-->
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  style="width: 90%;margin: auto">
+    <div class="modal-dialog" role="document" style="width: 90%;margin: auto">
+        <div class="modal-content" style="width: 90%;margin: auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center>
+                    <h2 class="modal-title" id="myModalLabel" style="color:#000">Question 5</h2>
+            </div>
+            <div class="modal-body">
+                <br>
+                <center> <h2>What is the best time of day to go to the grocery store, and why? </h2></center>
+                <center><iframe width="260" height="115" src="https://www.youtube.com/embed/yXkIHyBfns8" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
+                <details>
+                    <summary style="text-align:center;">Help</summary>
+                    <p style="text-align:center;">The best time of day to go to the grocery store is the one you want, because it is open all day.</p>
+                </details>
+            </div>
+            </center>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+            <br>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Exit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+
+
+
+<!-- *********************** SCRIPTS *********************************-->
+<script src="js/bootstrap.js"></script>
+<!-- *********************** SCRIPTS *********************************-->
+</body>
+</html>
